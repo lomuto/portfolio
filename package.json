@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/lomuto/portfolio/issues"
   },
-  "homepage": "https://github.com/lomuto/portfolio#readme"
+  "homepage": "https://github.com/lomuto/portfolio#readme",
+  "dependencies": {
+    "chart.js": "^3.6.0"
+  }
 }
