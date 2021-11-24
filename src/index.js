@@ -7,10 +7,11 @@ const config = {
         datasets: [
             {
                 label: 'Skill',
-                data: [12, 19, 3, 5, 2, 3],
-                backgroundColor: 'yellow',
-                borderColor: 'black',
-                borderWidth: 1
+                data: [12, 19, 3, 5, 2, 3], // modulize datas
+                borderColor: "rgb(206, 206, 206)",
+                fill: false,
+                cubicInterpolationMode: 'monotone',
+                tension: 10
             }
         ]
     },
@@ -18,20 +19,28 @@ const config = {
         maintainAspectRatio: false,
         plugins: {
             title: {
-                display: true,
-                text: 'History of me'
-            }
+                display: false
+            },
+            legend: {
+                display: false
+              }
         },
         scales: {
             x: {
+                grid:{
+                    display : false
+                },
                 title: {
-                    display: true,
-                    text: '색상'
+                    display: false,
+                    text: 'color'
                 }
             },
             y: {
+                grid:{
+                    display : false
+                },
                 title: {
-                    display: true,
+                    display: false,
                     text: 'Skill'
                 }
             }
@@ -41,15 +50,15 @@ const config = {
 
 const myChart = new Chart(ctx, config);
 
-const overLay = document.querySelector("#overlay");
+const canvasWrapper = document.querySelector("#canvas-wrapper");
 const infos = [];
 for(let i = 0; i<config.data.labels.length; i++) {
     const info = document.createElement("div");
     info.className = "info";
     info.innerText = `This is info of index ${i}`;
-    info.hidden = true;
     infos.push(info);
-    overLay.appendChild(info);
+    info.style.background = "white";
+    canvasWrapper.appendChild(info);
 }
 
 // setInterval(() => {
@@ -69,17 +78,20 @@ for(let i = 0; i<config.data.labels.length; i++) {
 document.querySelector("#chart").onclick = function clickHandler(evt) {
     const points = myChart.getElementsAtEventForMode(evt, 'nearest', { intersect: true }, true);
 
+// console.table(evt);
+
     if (points.length) {
         const firstPoint = points[0];
         const label = myChart.data.labels[firstPoint.index];
         const value = myChart.data.datasets[firstPoint.datasetIndex].data[firstPoint.index];
-        console.log(firstPoint.index)
         
-        infos[firstPoint.index].hidden = !infos[firstPoint.index].hidden;
-        
+        infos[firstPoint.index].style.top = `${evt.clientY + 20}px`
+        infos[firstPoint.index].style.left = `${evt.clientX - infos[firstPoint.index].offsetWidth / 2}px`
+
+        if(infos[firstPoint.index].style.opacity == 0) {
+            infos[firstPoint.index].style.opacity = 1;
+        } else {
+            infos[firstPoint.index].style.opacity = 0;
+        }
     }
 }
-
-// document.querySelector("#chart").onmouse = function onMouseHandler(evt) {
-
-// }
