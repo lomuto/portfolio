@@ -1,14 +1,14 @@
-#chart {
-  width: 400px;
-  height: 400px;
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 #canvas-wrapper {
-  position: relative;
   height: 60vh;
   width: 60vw;
 }
 
-#overlay {
+.info {
   position: absolute;
 }
