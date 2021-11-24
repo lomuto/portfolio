@@ -5,6 +5,14 @@ body {
   background-color: rgb(71, 71, 71);
 }
 
+h2 {
+  color: rgb(206, 206, 206);
+  text-align: center;
+  margin-top: 50px;
+  margin-bottom: 70px;
+  font-size: 35px;
+}
+
 #canvas-wrapper {
   height: 60vh;
   width: 60vw;
@@ -12,4 +20,5 @@ body {
 
 .info {
   position: absolute;
+  opacity: 0;
 }
