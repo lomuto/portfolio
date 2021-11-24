@@ -35,11 +35,22 @@ const config = {
                     text: 'Skill'
                 }
             }
-        },
+        }
     }
 }
 
 const myChart = new Chart(ctx, config);
+
+const overLay = document.querySelector("#overlay");
+const infos = [];
+for(let i = 0; i<config.data.labels.length; i++) {
+    const info = document.createElement("div");
+    info.className = "info";
+    info.innerText = `This is info of index ${i}`;
+    info.hidden = true;
+    infos.push(info);
+    overLay.appendChild(info);
+}
 
 // setInterval(() => {
 //     const datasets = config.data.datasets;
@@ -58,16 +69,17 @@ const myChart = new Chart(ctx, config);
 document.querySelector("#chart").onclick = function clickHandler(evt) {
     const points = myChart.getElementsAtEventForMode(evt, 'nearest', { intersect: true }, true);
 
-    console.log(points);
-
     if (points.length) {
         const firstPoint = points[0];
         const label = myChart.data.labels[firstPoint.index];
         const value = myChart.data.datasets[firstPoint.datasetIndex].data[firstPoint.index];
-        console.table(firstPoint)
-        console.log(label)
-        console.log(value)
-        myChart.data.datasets[firstPoint.datasetIndex].data[firstPoint.index] = (myChart.data.datasets[firstPoint.datasetIndex].data[firstPoint.index] > 100 ? 10 : 101);
-        myChart.update();
+        console.log(firstPoint.index)
+        
+        infos[firstPoint.index].hidden = !infos[firstPoint.index].hidden;
+        
     }
 }
+
+// document.querySelector("#chart").onmouse = function onMouseHandler(evt) {
+
+// }
