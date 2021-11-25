@@ -5,7 +5,6 @@ import com.portfolio.demo.Record.RecordService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -31,7 +30,6 @@ public class CommentController {
     }
 
     @GetMapping("")
-    @CrossOrigin("*")
     public ResponseEntity<List<Comment>> getCommentsByRecordId(@RequestParam(name = "recordId") Integer recordId) {
         return new ResponseEntity<List<Comment>>(
                 commentService.findByRecordId(recordId),
