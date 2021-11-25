@@ -20,8 +20,6 @@ async function fetchRecords() {
 
     const connection =  await request('GET', `${url}/api/record/records`);
 
-    console.log("Start fetch comment")
-
     const datas = JSON.parse(connection.response);
     
     const records = await Promise.all(datas.map(async data => {
@@ -34,8 +32,18 @@ async function fetchRecords() {
 
 
     records.sort((a, b) => {
-        console.log(a.startDate);
-        return a.startDate < b.startDate;
+        timeA = a.endDate.split('-');
+        timeB = b.endDate.split('-');
+
+        for(let i = 0; i<3; i++) {
+            if(parseInt(timeA[i]) === parseInt(timeB[i])) {
+                continue;
+            }
+
+            return parseInt(timeA[i]) - parseInt(timeB[i]);
+        }
+
+        return 0;
     })
 
 

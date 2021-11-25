@@ -1,59 +1,45 @@
 const chartElement = document.querySelector("#chart");
 const ctx = chartElement.getContext("2d");
-
-run();
-
-async function run(){
-/*
-*   Chart:          chart.js module
-*   canvasConfig:   ./src/canvasConfig.js
-*/
-const canvasConfig = await getCanvasConfig();
-const myChart = new Chart(ctx, canvasConfig);
-
 const canvasWrapper = document.querySelector("#canvas-wrapper");
 
-const records = [];
-for(let i = 0; i<canvasConfig.data.labels.length; i++) {
-    const record = new RecordBuilder()
-                    .setContent(`This is info of index ${i}`)
-                    .setBackgroundColor('white')
-                    .build();
+loadPage();
 
-    canvasWrapper.appendChild(record);
-    records.push(record);
-}
+async function loadPage(){
 
-// setInterval(() => {
-//     const datasets = config.data.datasets;
-//     for (let iDataset = 0; iDataset < datasets.length; iDataset++) {
-//         const data = datasets[iDataset].data;
-//             data[data.length-1] += 20;
-        
-//     }
-//     myChart.update();
-// }, 100);
+    const records = await fetchRecords();
+    const canvasConfig = await getCanvasConfig(records);
+    const myChart = new Chart(ctx, canvasConfig);
 
-// const datasets = config.data.datasets;
-// console.table(datasets);
-// console.table(datasets[0]);
+    const popUps = await Promise.all(
+        records.map(record => {
+            const popUpElement =  new PopUpBuilder()
+                        .appendTitle(record.title)
+                        .appendComments(record.comments)
+                        .setBackgroundColor('white')
+                        .build();
+            canvasWrapper.appendChild(popUpElement);
 
-document.querySelector("#chart").onclick = function clickHandler(evt) {
-    const points = myChart.getElementsAtEventForMode(evt, 'nearest', { intersect: true }, true);
+            return popUpElement;
+        })
+    );
 
-    if (points.length) {
-        const firstPoint = points[0];
-        const label = myChart.data.labels[firstPoint.index];
-        const value = myChart.data.datasets[firstPoint.datasetIndex].data[firstPoint.index];
 
-        records[firstPoint.index].style.top = `${evt.pageY + 20}px`
-        records[firstPoint.index].style.left = `${evt.pageX - records[firstPoint.index].offsetWidth / 2}px`
+    document.querySelector("#chart").onclick = evt => {
+        const points = myChart.getElementsAtEventForMode(evt, 'nearest', { intersect: true }, true);
 
-        if(records[firstPoint.index].style.opacity == 0) {
-            records[firstPoint.index].style.opacity = 1;
-        } else {
-            records[firstPoint.index].style.opacity = 0;
+        if (points.length) {
+            const index = points[0].index;
+
+            popUps[index].style.top = `${evt.pageY + 20}px`
+            popUps[index].style.left = `${evt.pageX - popUps[index].offsetWidth / 2}px`
+
+            if(popUps[index].style.display == 'block') {
+                popUps[index].style.opacity = 0.0;
+                popUps[index].style.display = 'none';
+            } else {
+                popUps[index].style.opacity = 1.0;
+                popUps[index].style.display = 'block';
+            }
         }
     }
-}
 }

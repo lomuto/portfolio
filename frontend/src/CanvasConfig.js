@@ -1,16 +1,15 @@
 /*
 *   returns canvas configuration through fetched datas
 */
-async function getCanvasConfig(){
-    records = await fetchRecords();
+async function getCanvasConfig(records){
 
-    const dataLabels = records.map(record => {
-        return record.startDate;
-    })
+    const dataLabels = await Promise.all(records.map(record => {
+        return record.endDate;
+    }));
 
-    const skills =  records.map(record => {
+    const skills = await Promise.all(records.map(record => {
         return record.skillEarned;
-    })
+    }));
 
     skills.forEach((v, i) => {
         if(i === skills.length) {
