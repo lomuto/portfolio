@@ -1,61 +1,79 @@
 /*
-db: label and data
-
+*   returns canvas configuration through fetched datas
 */
+async function getCanvasConfig(){
+    records = await fetchRecords();
 
-const canvasConfig = {
-    type: 'line',
-    data: {
-        labels: ['Jan. 2020', 'Mar. 2020', 'Jun. 2020', 'Nov. 2020', 'Jan. 2021', 'Jan. 2022'],
-        datasets: [
-            {
-                label: 'Skill',
-                data: [12, 19, 3, 5, 2, 3], // modulize datas
-                borderColor: "rgb(240, 240, 240)",
-                fill: false,
-                cubicInterpolationMode: 'monotone',
-                tension: 10
-            }
-        ]
-    },
-    options: {
-        maintainAspectRatio: false,
-        plugins: {
-            title: {
-                display: false
-            },
-            legend: {
-                display: false
-              },
-            tooltip: {
-                enabled: false
-              }
+    const dataLabels = records.map(record => {
+        return record.startDate;
+    })
+
+    const skills =  records.map(record => {
+        return record.skillEarned;
+    })
+
+    skills.forEach((v, i) => {
+        if(i === skills.length) {
+            return;
+        }
+
+        skills[i+1] += v;
+    })
+
+    return {
+        type: 'line',
+        data: {
+            labels: dataLabels,
+            datasets: [
+                {
+                    label: 'Skill',
+                    data: skills,
+                    borderColor: "rgb(240, 240, 240)",
+                    fill: false,
+                    cubicInterpolationMode: 'monotone',
+                    tension: 10
+                }
+            ]
         },
-        elements: {
-            point: {
-                radius: 3,
-                hoverRadius: 7,
-                borderWidth: 2,
-                hoverBorderWidth: 2
-            }
-        },
-        scales: {
-            x: {
-                grid:{
-                    display : false
-                },
+        options: {
+            maintainAspectRatio: false,
+            plugins: {
                 title: {
-                    display: false,
-                    text: 'color'
+                    display: false
+                },
+                legend: {
+                    display: false
+                },
+                tooltip: {
+                    enabled: false
                 }
             },
-            y: {
-                grid:{
-                    display : false
+            elements: {
+                point: {
+                    radius: 3,
+                    hoverRadius: 7,
+                    borderWidth: 2,
+                    hoverBorderWidth: 2
+                }
+            },
+            scales: {
+                x: {
+                    grid:{
+                        display : false
+                    },
+                    title: {
+                        display: false,
+                        text: 'color'
+                    }
                 },
-                title: {
-                    display: false,
-                    text: 'Skill'
+                y: {
+                    grid:{
+                        display : false
+                    },
+                    title: {
+                        display: false,
+                        text: 'Skill'
+                    }
                 }
             }
         }

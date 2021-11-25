@@ -1,5 +1,8 @@
 const url = 'http://www.coline.tk:8080';
 
+/*
+*   Send request to dedicated server
+*/
 function request(method,url){
     return new Promise((resolve,reject)=>{
         const xhr = new XMLHttpRequest();
@@ -10,20 +13,31 @@ function request(method,url){
     });
 }
 
+/*
+*   Fetch Records from database
+*/
 async function fetchRecords() {
-    const records = new Array();
-    
+
     const connection =  await request('GET', `${url}/api/record/records`);
 
+    console.log("Start fetch comment")
+
     const datas = JSON.parse(connection.response);
-    datas.forEach(async data => {
+    
+    const records = await Promise.all(datas.map(async data => {
 
-        const connection = await ('GET', `${url}/api/comment/${data.id}`);
+        const connection = await request('GET', `${url}/api/comment/${data.id}`);
         const comments = JSON.parse(connection.response);
-        const record = new Record(data, comments);
-        records.push(record);
+        return new Record(data, comments);
 
-    });
+    }));
+
+
+    records.sort((a, b) => {
+        console.log(a.startDate);
+        return a.startDate < b.startDate;
+    })
+
 
     return records;
 }

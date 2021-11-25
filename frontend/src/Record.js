@@ -1,15 +1,10 @@
 class Record {
-    constructor(
-        title,
-        skillEarned,
-        startDate,
-        endDate,
-        comments
-    ) {
-        this.title = title,
-        this.skillEarned = skillEarned,
-        this.startDate = startDate,
-        this.endDate =  endDate,
-        this.comment = comments
+    constructor(data, comments) {
+        this.id = data.id,
+        this.title = data.title,
+        this.skillEarned = data.skillEarned,
+        this.startDate = data.startDate,
+        this.endDate =  data.endDate,
+        this.comments = comments
     }
 }

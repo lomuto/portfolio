@@ -1,10 +1,14 @@
 const chartElement = document.querySelector("#chart");
 const ctx = chartElement.getContext("2d");
 
+run();
+
+async function run(){
 /*
 *   Chart:          chart.js module
 *   canvasConfig:   ./src/canvasConfig.js
 */
+const canvasConfig = await getCanvasConfig();
 const myChart = new Chart(ctx, canvasConfig);
 
 const canvasWrapper = document.querySelector("#canvas-wrapper");
@@ -52,23 +56,4 @@ document.querySelector("#chart").onclick = function clickHandler(evt) {
         }
     }
 }
-
-// document.querySelector("#chart").onmousemove = function mouseoverHandler(evt) {
-//     const points = myChart.getElementsAtEventForMode(evt, 'nearest', { intersect: true }, true);
-//     console.log('mouse is over')
-//     if (points.length) {
-//         const firstPoint = points[0];
-//         const label = myChart.data.labels[firstPoint.index];
-//         const value = myChart.data.datasets[firstPoint.datasetIndex].data[firstPoint.index];
-        
-//         for(let i = 0; i < records.length; i++) {
-//             if(i == firstPoint.index) {
-//                 myChart.data.datasets[firstPoint.datasetIndex].data[firstPoint.index] += 20;
-//                 console.log("??")
-//                 continue;
-//             }
-
-//             myChart.data.datasets[firstPoint.datasetIndex].data[firstPoint.index] = 10;
-//         }
-//     }
-// }
+}
