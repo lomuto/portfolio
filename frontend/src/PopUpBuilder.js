@@ -6,7 +6,6 @@ class PopUpBuilder {
 
     
     appendTitle(title) {
-        // Change with innerHTML with list later
         const popUpTitle = document.createElement('h1');
         popUpTitle.className = 'popup-title'
         popUpTitle.innerText = title;

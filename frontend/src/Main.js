@@ -63,7 +63,7 @@ async function loadPage(){
                 lastPopUp.style.left = `${window.innerWidth / 2 - 250}px`
                 lastPopUp.style.width = `500px`
                 lastPopUp.childNodes[0].innerText = "I am a fast growing developer,\n"
-                + "There are no limit in my passion and skills\n"
+                + "There are no limit in my passion and skills.\n"
                 + "If you are interested in me, please don't hesitate to contact\n\n"
                 + "010 - 2755 - 2171\n"
                 + "kangys1245@gmail.com"
