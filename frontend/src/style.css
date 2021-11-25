@@ -1,0 +1,30 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(71, 71, 71);
+}
+
+h2 {
+  color: rgb(240, 240, 240);
+  text-align: center;
+  margin-top: 50px;
+  margin-bottom: 70px;
+  font-size: 35px;
+}
+
+#canvas-wrapper {
+  height: 60vh;
+  width: 60vw;
+}
+
+.info {
+  position: absolute;
+  opacity: 0;
+  border-radius: 12px;
+  padding: 12px;
+}
+
+.record-title {
+  margin-top: 0px;
+}
