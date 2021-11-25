@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "record")
@@ -21,6 +22,9 @@ public class Record {
 
     @Column(nullable = false)
     private String contents;
+
+    @Column(nullable = false)
+    private LocalDate date;
 
     public Record() {
     }
@@ -48,5 +52,13 @@ public class Record {
 
     public void setContents(String contents) {
         this.contents = contents;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
     }
 }
