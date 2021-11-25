@@ -23,6 +23,16 @@ h2 {
   opacity: 0;
   border-radius: 12px;
   padding: 12px;
+  width: 300px;
+}
+
+.popup-title {
+  text-align: center;
+  font-size: 18px;
+}
+
+.comment-list {
+  font-size: 13px;
 }
 
 .record-title {

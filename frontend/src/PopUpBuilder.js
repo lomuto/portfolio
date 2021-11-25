@@ -8,7 +8,7 @@ class PopUpBuilder {
     appendTitle(title) {
         // Change with innerHTML with list later
         const popUpTitle = document.createElement('h1');
-        popUpTitle.className = 'popUp-title'
+        popUpTitle.className = 'popup-title'
         popUpTitle.innerText = title;
         
         this.popUpElement.appendChild(popUpTitle);
@@ -18,6 +18,7 @@ class PopUpBuilder {
 
     appendComments(comments) {
         const unorderedList = document.createElement('ul');
+        unorderedList.className = "comment-list"
 
         comments.forEach(comment => {
             const list = document.createElement('li');
