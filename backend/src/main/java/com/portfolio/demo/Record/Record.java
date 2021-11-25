@@ -35,8 +35,11 @@ public class Record {
     @Column(nullable = false)
     private String title;
 
-    @Column(nullable = false)
-    private LocalDate date;
+    @Column(name = "start_date", nullable = false)
+    private LocalDate startDate;
+
+    @Column(name = "end_date", nullable = false)
+    private LocalDate endDate;
 
     @Column(nullable = false)
     private Integer skillEarned;
@@ -48,15 +51,11 @@ public class Record {
     public Record() {
     }
 
-    public Record(String title, LocalDate date, Integer skillEarned) {
+    public Record(String title, LocalDate startDate, LocalDate endDate, Integer skillEarned) {
         this.title = title;
-        this.date = date;
+        this.startDate = startDate;
+        this.endDate = endDate;
         this.skillEarned = skillEarned;
-    }
-
-    public Record(String title, LocalDate date) {
-        this.title = title;
-        this.date = date;
     }
 
     public Integer getId() {
@@ -71,12 +70,20 @@ public class Record {
         this.title = title;
     }
 
-    public LocalDate getDate() {
-        return date;
+    public LocalDate getStartDate() {
+        return startDate;
     }
 
-    public void setDate(LocalDate date) {
-        this.date = date;
+    public void setStartDate(LocalDate startDate) {
+        this.startDate = startDate;
+    }
+
+    public LocalDate getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(LocalDate endDate) {
+        this.endDate = endDate;
     }
 
     public Integer getSkillEarned() {
@@ -105,7 +112,9 @@ public class Record {
         return "Record{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
-                ", date=" + date +
+                ", startDate=" + startDate +
+                ", endDate=" + endDate +
+                ", skillEarned=" + skillEarned +
                 '}';
     }
 }
