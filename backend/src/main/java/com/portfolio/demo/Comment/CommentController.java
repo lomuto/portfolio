@@ -37,7 +37,7 @@ public class CommentController {
         );
     }
 
-    @PostMapping("{recordId}")
+    @PostMapping("/{recordId}")
     public ResponseEntity<String> addCommentsToRecord(
             @PathVariable(name = "recordId") Integer recordId,
             @RequestBody List<Comment> comments
