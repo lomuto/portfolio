@@ -22,7 +22,7 @@ public class RecordService {
     }
 
     public void addRecord(Record record) {
-        if (record.getDate() == null || record.getTitle() == null) {
+        if (record.getStartDate() == null || record.getEndDate() == null || record.getTitle() == null || record.getSkillEarned() == null) {
             throw new IllegalStateException("Invalid record");
         }
 
