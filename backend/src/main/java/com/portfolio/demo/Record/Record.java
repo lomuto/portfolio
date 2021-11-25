@@ -14,7 +14,7 @@ public class Record {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(nullable = false)
-    private String id;
+    private Integer id;
 
     @Column(nullable = false)
     private String title;
@@ -30,7 +30,7 @@ public class Record {
         this.contents = contents;
     }
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
