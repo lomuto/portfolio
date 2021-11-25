@@ -27,7 +27,7 @@ public class RecordController {
         return new ResponseEntity<List<Record>>(recordService.getRecords(), HttpStatus.OK);
     }
 
-    @PostMapping("/")
+    @PostMapping("")
     public ResponseEntity<Record> addRecord(@RequestBody Record record) {
         // validation
         recordService.addRecord(record);
