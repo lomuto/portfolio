@@ -7,6 +7,8 @@ async function getCanvasConfig(records){
         return record.endDate;
     }));
 
+    dataLabels[dataLabels.length - 1] = "What's next?"
+
     const skills = await Promise.all(records.map(record => {
         return record.skillEarned;
     }));
