@@ -1,3 +1,8 @@
+/*
+db: label and data
+
+*/
+
 const canvasConfig = {
     type: 'line',
     data: {
@@ -6,7 +11,7 @@ const canvasConfig = {
             {
                 label: 'Skill',
                 data: [12, 19, 3, 5, 2, 3], // modulize datas
-                borderColor: "rgb(206, 206, 206)",
+                borderColor: "rgb(240, 240, 240)",
                 fill: false,
                 cubicInterpolationMode: 'monotone',
                 tension: 10

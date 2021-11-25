@@ -37,8 +37,6 @@ for(let i = 0; i<canvasConfig.data.labels.length; i++) {
 document.querySelector("#chart").onclick = function clickHandler(evt) {
     const points = myChart.getElementsAtEventForMode(evt, 'nearest', { intersect: true }, true);
 
-// console.table(evt);
-
     if (points.length) {
         const firstPoint = points[0];
         const label = myChart.data.labels[firstPoint.index];
@@ -54,3 +52,23 @@ document.querySelector("#chart").onclick = function clickHandler(evt) {
         }
     }
 }
+
+// document.querySelector("#chart").onmousemove = function mouseoverHandler(evt) {
+//     const points = myChart.getElementsAtEventForMode(evt, 'nearest', { intersect: true }, true);
+//     console.log('mouse is over')
+//     if (points.length) {
+//         const firstPoint = points[0];
+//         const label = myChart.data.labels[firstPoint.index];
+//         const value = myChart.data.datasets[firstPoint.datasetIndex].data[firstPoint.index];
+        
+//         for(let i = 0; i < records.length; i++) {
+//             if(i == firstPoint.index) {
+//                 myChart.data.datasets[firstPoint.datasetIndex].data[firstPoint.index] += 20;
+//                 console.log("??")
+//                 continue;
+//             }
+
+//             myChart.data.datasets[firstPoint.datasetIndex].data[firstPoint.index] = 10;
+//         }
+//     }
+// }
