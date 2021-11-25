@@ -29,8 +29,8 @@ public class CommentController {
         this.commentService = commentService;
     }
 
-    @GetMapping("")
-    public ResponseEntity<List<Comment>> getCommentsByRecordId(@RequestParam(name = "recordId") Integer recordId) {
+    @GetMapping("/{recordId}")
+    public ResponseEntity<List<Comment>> getCommentsByRecordId(@PathVariable(name = "recordId") Integer recordId) {
         return new ResponseEntity<List<Comment>>(
                 commentService.findByRecordId(recordId),
                 HttpStatus.OK
