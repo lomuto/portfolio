@@ -1,5 +1,13 @@
 # Portfolio
 
+다음 링크로 접속해 홈페이지를 바로 확인할 수 있습니다.
+
+```
+http://www.coline.tk:8080/src/index.html
+```
+
+---
+
 ## 💻 기술 스택
 
 - **Front**: Vanila Javascript
