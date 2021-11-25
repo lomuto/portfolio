@@ -42,8 +42,10 @@ document.querySelector("#chart").onclick = function clickHandler(evt) {
         const label = myChart.data.labels[firstPoint.index];
         const value = myChart.data.datasets[firstPoint.datasetIndex].data[firstPoint.index];
         
-        records[firstPoint.index].style.top = `${evt.clientY + 20}px`
-        records[firstPoint.index].style.left = `${evt.clientX - records[firstPoint.index].offsetWidth / 2}px`
+console.table(evt)
+
+        records[firstPoint.index].style.top = `${evt.pageY + 20}px`
+        records[firstPoint.index].style.left = `${evt.pageX - records[firstPoint.index].offsetWidth / 2}px`
 
         if(records[firstPoint.index].style.opacity == 0) {
             records[firstPoint.index].style.opacity = 1;
