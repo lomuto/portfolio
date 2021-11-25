@@ -94,16 +94,12 @@ public class Record {
         this.skillEarned = skillEarned;
     }
 
-    public List<Comment> getComments() {
-        return comments;
-    }
-
     public void setComments(List<Comment> comments) {
         this.comments = comments;
     }
 
     public void addComment(Comment comment) {
-        this.comments.add(comment);
+//        this.comments.add(comment);
         comment.setRecord(this);
     }
 
