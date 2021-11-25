@@ -1,58 +1,17 @@
-const ctx = document.querySelector("#chart").getContext("2d");
+const chartElement = document.querySelector("#chart");
+const ctx = chartElement.getContext("2d");
 
-const config = {
-    type: 'line',
-    data: {
-        labels: ['Jan. 2020', 'Mar. 2020', 'Jun. 2020', 'Nov. 2020', 'Jan. 2021', 'Jan. 2022'],
-        datasets: [
-            {
-                label: 'Skill',
-                data: [12, 19, 3, 5, 2, 3], // modulize datas
-                borderColor: "rgb(206, 206, 206)",
-                fill: false,
-                cubicInterpolationMode: 'monotone',
-                tension: 10
-            }
-        ]
-    },
-    options: {
-        maintainAspectRatio: false,
-        plugins: {
-            title: {
-                display: false
-            },
-            legend: {
-                display: false
-              }
-        },
-        scales: {
-            x: {
-                grid:{
-                    display : false
-                },
-                title: {
-                    display: false,
-                    text: 'color'
-                }
-            },
-            y: {
-                grid:{
-                    display : false
-                },
-                title: {
-                    display: false,
-                    text: 'Skill'
-                }
-            }
-        }
-    }
-}
-
-const myChart = new Chart(ctx, config);
+/*
+*   Chart:          chart.js module
+*   canvasConfig:   ./src/canvasConfig.js
+*/
+const myChart = new Chart(ctx, canvasConfig);
 
 const canvasWrapper = document.querySelector("#canvas-wrapper");
+
+// Modulize info as Class: Record
 const infos = [];
-for(let i = 0; i<config.data.labels.length; i++) {
+for(let i = 0; i<canvasConfig.data.labels.length; i++) {
     const info = document.createElement("div");
     info.className = "info";
     info.innerText = `This is info of index ${i}`;

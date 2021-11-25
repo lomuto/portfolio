@@ -21,4 +21,5 @@ h2 {
 .info {
   position: absolute;
   opacity: 0;
+  border-radius: 12px;
 }
